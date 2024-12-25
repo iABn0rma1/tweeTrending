@@ -1,9 +1,55 @@
+:root {
+    /* Colors */
+    --primary-color: #1da1f2;
+    --secondary-color: #1991db;
+    --background-color: #15202b;
+    --card-background: #192734;
+    --text-color: #ffffff;
+    --muted-text-color: #8899a6;
+    --border-color: #38444d;
+
+    /* Font sizes */
+    --h1-font-size: 2rem;
+    --h1-font-size-sm: 1.5rem;
+    --font-size: 1rem;
+    --font-size-sm: 0.9rem;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #15202b;
-    color: #ffffff;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    padding: 15px 30px;
+}
+
+nav img {
+    height: 50px;
+    width: auto;
+}
+
+nav .nav-links {
+    display: flex;
+    gap: 8vw;
+}
+
+nav .nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.15rem;
+    transition: color 0.3s ease;
+}
+
+nav .nav-links a:hover {
+    color: var(--secondary-color);
 }
 
 .container {
@@ -14,32 +60,32 @@ body {
 }
 
 h1 {
-    color: #1da1f2;
-    font-size: 2em;
+    color: var(--primary-color);
+    font-size: var(--h1-font-size);
     margin-bottom: 20px;
 }
 
 button {
-    background-color: #1da1f2;
-    color: #ffffff;
+    background-color: var(--primary-color);
+    color: var(--text-color);
     border: none;
     padding: 10px 20px;
-    font-size: 1rem;
+    font-size: var(--font-size);
     cursor: pointer;
     border-radius: 20px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    background-color: #1991db;
+    background-color: var(--secondary-color);
     transform: scale(1.01);
 }
 
 #results {
     margin: 20px auto;
     text-align: left;
-    border: 1px solid #38444d;
-    background-color: #192734;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-background);
     padding: 15px;
     border-radius: 10px;
 }
@@ -50,9 +96,9 @@ button:hover {
 
 pre {
     padding: 15px;
-    background: #192734;
-    color: #8899a6;
-    border: 1px solid #38444d;
+    background: var(--card-background);
+    color: var(--muted-text-color);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     overflow: auto;
 }
@@ -63,7 +109,7 @@ pre {
     right: 10px;
     padding: 5px 10px;
     border-radius: 5px;
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
 }
 
 /* Disabled style, while scraping again */
@@ -75,11 +121,11 @@ pre {
 /* Responsive styles */
 @media (max-width: 768px) {
     h1 {
-        font-size: 1.5em;
+        font-size: var(--h1-font-size-sm);
     }
 
     button {
-        font-size: 0.9em;
+        font-size: var(--font-size-sm);
         padding: 8px 16px;
     }
 

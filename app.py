@@ -2,6 +2,7 @@ from fastapi.responses import JSONResponse # for returning JSON responses
 from fastapi.staticfiles import StaticFiles # for serving static files
 from fastapi.templating import Jinja2Templates # for rendering HTML templates
 from fastapi import FastAPI, Request, HTTPException # for creating the FastAPI app and handling exceptions
+from fastapi.responses import HTMLResponse
 
 from selenium import webdriver # for web scraping
 from selenium.webdriver.common.by import By # for locating elements
@@ -49,7 +50,7 @@ def scrape_twitter(count=5):
     chrome_options.add_argument(f'--proxy-server={PROXY_MESH}') # ProxyMesh proxy server
     try:
         driver = webdriver.Chrome(options=chrome_options) 
-    except WebDriverException as e: # catch any WebDriver errors
+    except WebDriverException as e:
         raise HTTPException(status_code=500, detail=f"Error initializing WebDriver: {e}")
 
     ip_address = get_ip()
@@ -114,7 +115,7 @@ def scrape_twitter(count=5):
             "ip_address": ip_address,
         }
         try:
-            collection.insert_one(record) # insert the record into the database
+            collection.insert_one(record)
         except PyMongoError as e:
             raise HTTPException(status_code=500, detail=f"Database error: {e}")
         
@@ -126,7 +127,7 @@ def scrape_twitter(count=5):
 
 @app.get("/") # Home route
 async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse("home.html", {"request": request})
 
 @app.get("/run-script") 
 async def run_script():
@@ -139,3 +140,22 @@ async def run_script():
         return JSONResponse(
             status_code=500, content={"detail": f"An unexpected error occurred: {e}"}
         )
+
+
+async def fetch_db_entries():
+    try:
+        return list(collection.find())
+    except PyMongoError as e:
+        raise HTTPException(status_code=500, detail=f"Database error: {e}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {e}")
+
+@app.get("/db", response_class=HTMLResponse)
+async def get_db_entries_html(request: Request): 
+    entries = await fetch_db_entries() # Return as HTML
+    return templates.TemplateResponse("db.html", {"request": request, "entries": entries})
+
+@app.get("/db-entries")
+async def get_db_entries_json(): 
+    entries = await fetch_db_entries() # Return JSON
+    return JSONResponse(content={"entries": entries})

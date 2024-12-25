@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+
+{% block title %}All Records{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>All Records</h1>
+    <div id="results" style="max-height: 70vh; overflow-y: auto;"> <!-- Added a scrollbar for readability -->
+        {% for record in entries %}
+        <div class="pre-wrapper">
+            <pre>
+<h4 style="margin: 0">Record {{ loop.index }}:</h4>
+id: {{ record._id }}
+trend1: {{ record.trend1 }}
+trend2: {{ record.trend2 }}
+trend3: {{ record.trend3 }}
+trend4: {{ record.trend4 }}
+trend5: {{ record.trend5 }}
+timestamp: {{ record.timestamp }}
+ip_address: {{ record.ip_address }}
+                    </pre>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

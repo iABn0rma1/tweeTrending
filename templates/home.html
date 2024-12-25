@@ -1,0 +1,21 @@
+{% extends "index.html" %} 
+
+{% block title %}Home Page{% endblock %} 
+
+{% block content %}
+
+<div class="container">
+    <h1>
+        <i class="fab fa-twitter" style="color: #1da1f2; margin-right: 10px"></i>
+        Trends
+    </h1>
+    <button id="run-script-btn" onclick="runScript()">
+        Click here to run the script
+    </button>
+    <div id="results"></div>
+    <!-- Display the results from scraper here -->
+</div>
+
+<script src="../static/script.js"></script>
+
+{% endblock %}
