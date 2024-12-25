@@ -1,0 +1,8 @@
+selenium==4.27.1
+fastapi==0.115.6
+jinja2==3.1.5
+uvicorn==0.34.0
+python-multipart==0.0.20
+pymongo==4.9.2
+python-dotenv==1.0.1
+requests==2.32.3

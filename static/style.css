@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #15202b;
+    color: #ffffff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #1da1f2;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #1da1f2;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #1991db;
+    transform: scale(1.01);
+}
+
+#results {
+    margin: 20px auto;
+    text-align: left;
+    border: 1px solid #38444d;
+    background-color: #192734;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.pre-wrapper {
+    position: relative;
+}
+
+pre {
+    padding: 15px;
+    background: #192734;
+    color: #8899a6;
+    border: 1px solid #38444d;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+/* Disabled style, while scraping again */
+#run-again-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+
+    pre {
+        padding: 30px 15px 10px;
+    }
+}
