@@ -5,7 +5,7 @@ from fastapi import FastAPI, Request, HTTPException # for creating the FastAPI a
 from fastapi.responses import HTMLResponse
 
 import os # for fetching environment variables
-import uuid # for generating unique IDs
+from requests import get # for fetching the IP address
 from datetime import datetime # for fetching the current date and time
 from pymongo import MongoClient # for connecting to MongoDB
 from pymongo.errors import PyMongoError # for handling database errors
@@ -26,13 +26,23 @@ db = client["twitter_trends"]
 collection = db["trending_topics"]
 
 
+def get_ip():
+    ip = "cannot fetch IP"
+    try:
+        ip = get('https://api.ipify.org').text
+    finally:
+        return ip
+
 @app.get("/") # Home route
 async def home(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
 @app.get("/run-script") 
 async def run_script():
-        return "this returns the result of the scraper"
+    try:
+        return get_ip()
+    except Exception as e:
+        return f"An error occurred: {e}"
 
 
 async def fetch_db_entries():
