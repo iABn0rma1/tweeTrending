@@ -106,11 +106,11 @@ def scrape_twitter(count=5):
         DaTime = datetime.now().strftime("%d-%m-%Y %H:%M:%S") # current date and time
         record = {
             "_id": f"{str(uuid.uuid4())[:10]}-{DaTime.replace(":", "").replace("-", "").replace(" ", "-")}",
-            "trend1": trend_names[0],
-            "trend2": trend_names[1],
-            "trend3": trend_names[2],
-            "trend4": trend_names[3],
-            "trend5": trend_names[4],
+            "nameoftrend1": trend_names[0],
+            "nameoftrend2": trend_names[1],
+            "nameoftrend3": trend_names[2],
+            "nameoftrend4": trend_names[3],
+            "nameoftrend5": trend_names[4],
             "timestamp": DaTime,
             "ip_address": ip_address,
         }
