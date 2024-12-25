@@ -40,19 +40,19 @@ nav {
 }
 
 nav img {
-    height: 50px;
+    height: 30px;
     width: auto;
 }
 
 nav .nav-links {
     display: flex;
-    gap: 8vw;
+    gap: 3vw;
 }
 
 nav .nav-links a {
     color: var(--text-color);
     text-decoration: none;
-    font-size: 1.15rem;
+    font-size: 1rem;
     transition: color 0.3s ease;
 }
 
