@@ -159,3 +159,7 @@ async def get_db_entries_html(request: Request):
 async def get_db_entries_json(): 
     entries = await fetch_db_entries() # Return JSON
     return JSONResponse(content={"entries": entries})
+
+@app.exception_handler(404) # handle 404 errors, when a route/path is not found
+async def custom_404_handler(request: Request, exc: HTTPException):
+    return templates.TemplateResponse("404.html", {"request": request}, status_code=404)
