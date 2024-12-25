@@ -46,7 +46,7 @@ def get_ip():
 
 def scrape_twitter(count=5):
     chrome_options = Options()
-    # chrome_options.add_argument(f'--proxy-server={PROXY_MESH}') # ProxyMesh proxy server
+    chrome_options.add_argument(f'--proxy-server={PROXY_MESH}') # ProxyMesh proxy server
     try:
         driver = webdriver.Chrome(options=chrome_options) 
     except WebDriverException as e: # catch any WebDriver errors
